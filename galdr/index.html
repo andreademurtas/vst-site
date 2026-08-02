@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Galdr — black metal synthesizer | Sognevo</title>
-  <meta name="description" content="Galdr is a free, open-source black metal synthesizer: VST3, CLAP, AU and standalone for Windows, macOS and Linux. 12 voices, morphing wavetables, genre FX chain, GPLv3.">
+  <meta name="description" content="Galdr is a free, open-source black metal synthesizer: VST3, CLAP, AU and standalone for Windows, macOS and Linux. 12 voices, morphing wavetables, mod matrix, arpeggiator, genre FX chain, GPLv3.">
   <meta name="theme-color" content="#070707">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070707'/%3E%3Cpath d='M21 4 10 14l12 5-11 9' stroke='%23c92121' stroke-width='3' fill='none'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,16 +88,24 @@
         <li>12-voice engine with poly, mono and legato modes</li>
         <li>Two band-limited (PolyBLEP) oscillators, up to 7-voice unison with
             detune and stereo spread, sub oscillator and white/pink noise</li>
+        <li>FM (osc&nbsp;2 modulates osc&nbsp;1) and hard sync for aggressive
+            metallic timbres, plus per-voice analog drift</li>
         <li>Morphing wavetable mode: 32 mip-mapped frames sweeping from sine
             through saw to an inharmonic “grim” spectrum</li>
         <li>Multimode filter (LP 12/24&nbsp;dB, HP, BP and vowel formant) with
             drive, dedicated envelope and keytracking</li>
+        <li>8-slot modulation matrix (LFOs, envelopes, velocity, mod wheel,
+            pressure, per-note random) routable to pitch, morph, cutoff, FM,
+            FX sends and more, with a free third envelope</li>
+        <li>Tempo-synced arpeggiator (up/down/up-down/random/as-played,
+            up to 4 octaves)</li>
         <li>Two LFOs, glide, separate amp and filter envelopes</li>
         <li>MPE-friendly per-note pitch bend and pressure; Scala (.scl) microtuning</li>
         <li>Genre FX chain with the nonlinear stages oversampled 2×: four-flavour
             distortion, bitcrusher, ring modulator, chorus, tremolo picking, delay
-            and a dark FDN cavern reverb with predelay</li>
-        <li>“Blizzard”: a granular snowstorm texture layer</li>
+            and a dark FDN cavern reverb with predelay and octave-up shimmer</li>
+        <li>“Blizzard”: a granular snowstorm texture layer, gated by note
+            activity or free-running as a continuous drone</li>
         <li>Tempo sync for LFOs, tremolo and delay (musical divisions of the host tempo)</li>
         <li>Preset browser with factory and user presets, oscilloscope and
             spectrum analyser, on-screen MIDI keyboard</li>
@@ -175,9 +183,11 @@ cmake --build build --config Release</code></pre>
       <div class="prose">
         <p>Galdr is licensed under the GNU General Public License v3.0 or later.
            It is built on the <a href="https://juce.com">JUCE framework</a> (AGPLv3),
-           uses the VST3 SDK interfaces distributed with JUCE (GPLv3), and
+           uses the VST3 SDK interfaces distributed with JUCE (MIT), and
            <a href="https://github.com/free-audio/clap-juce-extensions">clap-juce-extensions</a>
-           (MIT) for the CLAP build.</p>
+           (MIT) for the CLAP build. Binary releases ship the relevant license
+           texts in a <code>licenses/</code> folder plus a <code>NOTICE.txt</code>
+           with full attributions.</p>
         <p>The GUI embeds UnifrakturMaguntia and IM Fell English, the same
            typefaces you are reading now, both under the SIL Open Font License.</p>
       </div>
