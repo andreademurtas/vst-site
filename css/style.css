@@ -1,0 +1,355 @@
+/* ════════════════════════════════════════════════════════════
+   Sognevo — shared stylesheet
+   Near-black / bone white / blood red. No rounded corners:
+   everything is carved, not moulded.
+   ════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:            #070707;
+  --bg-raised:     #0d0c0b;
+  --bg-inset:      #131110;
+  --border:        #272421;
+  --border-strong: #403b35;
+  --bone:          #e7e1d2;
+  --bone-dim:      #9c9587;
+  --blood:         #9e1313;
+  --blood-bright:  #c92121;
+  --font-display: "UnifrakturMaguntia", serif;
+  --font-body:    "IM Fell English", Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* Film grain: inline SVG feTurbulence, tiled as a fixed overlay. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.13;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+::selection { background: var(--blood); color: #fff; }
+
+.container { max-width: 1020px; margin: 0 auto; padding: 0 1.25rem; }
+
+a { color: var(--bone); text-decoration-color: var(--blood); text-underline-offset: 3px; }
+a:hover { color: var(--blood-bright); }
+:focus-visible { outline: 2px solid var(--blood-bright); outline-offset: 2px; }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; }
+
+h2 { font-size: 2.1rem; margin-bottom: 1.4rem; }
+h2::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  margin-top: 0.5rem;
+  background: var(--blood);
+}
+
+code, kbd {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.82em;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  padding: 0.1em 0.35em;
+  white-space: nowrap;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: rgba(7, 7, 7, 0.92);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 0.75rem 1.25rem;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--bone);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.brand:hover { color: var(--bone); }
+.brand svg { display: block; }
+
+.site-nav { display: flex; gap: 1.5rem; }
+.site-nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  color: var(--bone-dim);
+}
+.site-nav a:hover { color: var(--blood-bright); }
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+.hero {
+  padding: 5rem 0 4.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(ellipse at 50% -20%, #171010 0%, var(--bg) 62%);
+}
+
+.hero .sigil {
+  display: block;
+  width: 76px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+
+.display { font-size: clamp(3.2rem, 10vw, 5.6rem); }
+.display::first-letter { color: var(--blood-bright); }
+
+.tagline {
+  font-size: 1.35rem;
+  font-style: italic;
+  max-width: 34em;
+  margin: 1rem auto 0.4rem;
+}
+
+.hero-sub { color: var(--bone-dim); }
+
+.etymology { font-style: italic; color: var(--bone-dim); margin-top: 0.6rem; }
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+.hero .tags { justify-content: center; margin-top: 1.8rem; }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: var(--bone);
+  background: transparent;
+  border: 1px solid var(--blood);
+  padding: 0.7rem 1.5rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn:hover { background: var(--blood); color: #fff; }
+.btn.primary { background: var(--blood); color: #fff; }
+.btn.primary:hover { background: var(--blood-bright); border-color: var(--blood-bright); }
+
+/* ── Sections ───────────────────────────────────────────────── */
+
+.section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+
+.section .lead { max-width: 44em; }
+
+.sigil-divider { display: block; width: 54px; height: auto; margin: 3rem auto 0; opacity: 0.75; }
+
+/* ── Prose blocks ───────────────────────────────────────────── */
+
+.prose { max-width: 46em; }
+.prose p + p { margin-top: 1rem; }
+
+pre {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  margin-top: 1.4rem;
+  line-height: 1.5;
+}
+pre code { background: none; border: 0; padding: 0; white-space: pre; }
+
+/* ── Plugin grid (home) ─────────────────────────────────────── */
+
+.plugin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.plugin-card {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-raised);
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: border-color 0.15s;
+}
+.plugin-card:hover { border-color: var(--blood); }
+
+.plugin-name { font-size: 2.2rem; }
+.plugin-name a { text-decoration: none; }
+
+.plugin-kind {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  color: var(--blood-bright);
+}
+
+.plugin-card .btn { align-self: flex-start; margin-top: auto; }
+
+.plugin-card.ghost {
+  border: 1px dashed var(--border);
+  background: transparent;
+  color: var(--bone-dim);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.plugin-card.ghost:hover { border-color: var(--border); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  border: 1px solid var(--border-strong);
+  color: var(--bone-dim);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.15rem 0.5rem;
+}
+
+/* ── Screenshot (Galdr) ─────────────────────────────────────── */
+
+.screenshot-frame {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-inset);
+  padding: 0.6rem;
+  margin: 2.5rem auto 0;
+  max-width: 860px;
+}
+.screenshot-frame img { display: block; width: 100%; height: auto; }
+.screenshot-frame figcaption {
+  padding-top: 0.6rem;
+  text-align: center;
+  color: var(--bone-dim);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* ── Download (Galdr) ───────────────────────────────────────── */
+
+.dl-note { color: var(--bone-dim); font-style: italic; }
+
+.dl-meta { color: var(--bone-dim); margin-bottom: 1.4rem; }
+.dl-meta strong { color: var(--bone); font-size: 1.2em; font-style: normal; }
+
+.dl-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.dl-btn {
+  display: block;
+  border: 1px solid var(--blood);
+  padding: 1.1rem 1.2rem;
+  text-decoration: none;
+  color: var(--bone);
+  transition: background 0.15s;
+}
+.dl-btn .dl-os { display: block; font-family: var(--font-display); font-size: 1.6rem; }
+.dl-btn .dl-sub { display: block; font-size: 0.8rem; color: var(--bone-dim); letter-spacing: 0.05em; }
+.dl-btn .dl-count { display: block; margin-top: 0.45rem; font-size: 0.8rem; color: var(--blood-bright); }
+
+.dl-btn:hover { background: var(--blood); color: #fff; }
+.dl-btn:hover .dl-sub, .dl-btn:hover .dl-count { color: #fff; }
+
+.dl-btn.primary { background: var(--blood); color: #fff; }
+.dl-btn.primary .dl-sub, .dl-btn.primary .dl-count { color: rgba(255, 255, 255, 0.8); }
+.dl-btn.primary:hover { background: var(--blood-bright); border-color: var(--blood-bright); }
+
+#dl-fallback p { margin-bottom: 1.2rem; max-width: 44em; }
+
+.dl-after { margin-top: 1.6rem; color: var(--bone-dim); font-size: 0.92rem; max-width: 50em; }
+
+/* ── Features (Galdr) ───────────────────────────────────────── */
+
+.feature-list {
+  list-style: none;
+  margin-top: 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 0.9rem 2.5rem;
+}
+.feature-list li { position: relative; padding-left: 1.3rem; }
+.feature-list li::before { content: "‣"; position: absolute; left: 0; color: var(--blood-bright); }
+
+/* ── Install table (Galdr) ──────────────────────────────────── */
+
+.table-wrap { overflow-x: auto; margin-top: 1.6rem; }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: var(--bone-dim);
+  background: var(--bg-raised);
+}
+td:first-child { white-space: nowrap; }
+
+/* ── 404 ────────────────────────────────────────────────────── */
+
+.void {
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.25rem;
+}
+.void h1 { font-size: clamp(5rem, 20vw, 9rem); color: var(--blood); line-height: 1; }
+.void p { margin: 1rem 0 2rem; color: var(--bone-dim); font-style: italic; }
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+.site-footer { padding: 2.5rem 0 3rem; color: var(--bone-dim); font-size: 0.9rem; }
+.site-footer .fine { margin-top: 0.8rem; font-size: 0.8rem; }

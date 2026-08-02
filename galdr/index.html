@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galdr — black metal synthesizer | Sognevo</title>
+  <meta name="description" content="Galdr is a free, open-source black metal synthesizer: VST3, CLAP, AU and standalone for Windows, macOS and Linux. 12 voices, morphing wavetables, genre FX chain, GPLv3.">
+  <meta name="theme-color" content="#070707">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070707'/%3E%3Cpath d='M21 4 10 14l12 5-11 9' stroke='%23c92121' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../">
+      <svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M21 4 10 14l12 5-11 9" stroke="#c92121" stroke-width="3" fill="none"/></svg>
+      Sognevo
+    </a>
+    <nav class="site-nav">
+      <a href="../#plugins">Plugins</a>
+      <a href="../#about">About</a>
+      <a href="https://github.com/andreademurtas/galdr">Source</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="display">Galdr</h1>
+      <p class="etymology"><em>galdr</em>, Old Norse: a spell sung rather than spoken.</p>
+      <p class="tagline">A free and open-source synthesizer with a black-metal soul,
+         built with <a href="https://juce.com">JUCE</a>.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#download">Download</a>
+        <a class="btn" href="https://github.com/andreademurtas/galdr">Source on GitHub</a>
+      </div>
+      <p class="tags">
+        <span class="tag">VST3</span><span class="tag">CLAP</span><span class="tag">AU (macOS)</span><span class="tag">Standalone</span><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">Linux</span>
+      </p>
+      <figure class="screenshot-frame">
+        <img src="https://raw.githubusercontent.com/andreademurtas/galdr/main/docs/screenshot.png"
+             alt="The Galdr GUI: a dark-fantasy themed synthesizer interface"
+             loading="lazy"
+             onerror="this.closest('figure').hidden = true">
+        <figcaption>The GUI: dark-fantasy themed, resizable, with tooltips.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="download" class="section">
+    <div class="container">
+      <h2>Download</h2>
+
+      <p id="dl-loading" class="dl-note">Checking the latest release on GitHub…</p>
+
+      <div id="dl-live" hidden>
+        <p class="dl-meta">
+          <strong id="dl-version"></strong>
+          · released <span id="dl-date"></span>
+          · <span id="dl-total"></span>
+        </p>
+        <div id="dl-buttons" class="dl-buttons"></div>
+        <p class="dl-after">Each archive contains every plugin format for its platform.
+           Files are served by GitHub from the project's
+           <a href="https://github.com/andreademurtas/galdr/releases">releases</a>.</p>
+      </div>
+
+      <div id="dl-fallback" hidden>
+        <p>There is no packaged release yet; the first one is still in the works.
+           Until then you can watch the releases page, or build Galdr from source
+           with the instructions further down.</p>
+        <a class="btn" href="https://github.com/andreademurtas/galdr/releases"
+           data-goatcounter-click="galdr-releases-fallback">Releases on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li>12-voice engine with poly, mono and legato modes</li>
+        <li>Two band-limited (PolyBLEP) oscillators, up to 7-voice unison with
+            detune and stereo spread, sub oscillator and white/pink noise</li>
+        <li>Morphing wavetable mode: 32 mip-mapped frames sweeping from sine
+            through saw to an inharmonic “grim” spectrum</li>
+        <li>Multimode filter (LP 12/24&nbsp;dB, HP, BP and vowel formant) with
+            drive, dedicated envelope and keytracking</li>
+        <li>Two LFOs, glide, separate amp and filter envelopes</li>
+        <li>MPE-friendly per-note pitch bend and pressure; Scala (.scl) microtuning</li>
+        <li>Genre FX chain with the nonlinear stages oversampled 2×: four-flavour
+            distortion, bitcrusher, ring modulator, chorus, tremolo picking, delay
+            and a dark FDN cavern reverb with predelay</li>
+        <li>“Blizzard”: a granular snowstorm texture layer</li>
+        <li>Tempo sync for LFOs, tremolo and delay (musical divisions of the host tempo)</li>
+        <li>Preset browser with factory and user presets, oscilloscope and
+            spectrum analyser, on-screen MIDI keyboard</li>
+        <li>Dark-fantasy themed GUI, resizable, with tooltips</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Installation</h2>
+      <div class="prose">
+        <p>Extract the archive for your platform, copy each plugin into the folder
+           below, then rescan your plugins in the DAW. The standalone app needs no
+           installation and runs from wherever you put it.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Format</th><th>Windows</th><th>macOS</th><th>Linux</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>VST3</td>
+              <td><code>C:\Program Files\Common Files\VST3</code></td>
+              <td><code>~/Library/Audio/Plug-Ins/VST3</code></td>
+              <td><code>~/.vst3</code></td>
+            </tr>
+            <tr>
+              <td>CLAP</td>
+              <td><code>C:\Program Files\Common Files\CLAP</code></td>
+              <td><code>~/Library/Audio/Plug-Ins/CLAP</code></td>
+              <td><code>~/.clap</code></td>
+            </tr>
+            <tr>
+              <td>AU</td>
+              <td>—</td>
+              <td><code>~/Library/Audio/Plug-Ins/Components</code></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Standalone</td>
+              <td>run directly</td>
+              <td>run directly</td>
+              <td>run directly</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Building from source</h2>
+      <div class="prose">
+        <p>You need git, CMake ≥ 3.22 and a C++20 compiler (Visual Studio 2022 on
+           Windows, Xcode on macOS, GCC or Clang on Linux).</p>
+      </div>
+<pre><code>git clone --recurse-submodules https://github.com/andreademurtas/galdr.git
+cd galdr
+cmake -B build
+cmake --build build --config Release</code></pre>
+      <div class="prose">
+        <p style="margin-top:1.4rem">Builds end up in <code>build/Galdr_artefacts/Release/</code>.
+           On Linux, install the JUCE build dependencies first; the package list is in the
+           <a href="https://github.com/andreademurtas/galdr#building">README</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>License</h2>
+      <div class="prose">
+        <p>Galdr is licensed under the GNU General Public License v3.0 or later.
+           It is built on the <a href="https://juce.com">JUCE framework</a> (AGPLv3),
+           uses the VST3 SDK interfaces distributed with JUCE (GPLv3), and
+           <a href="https://github.com/free-audio/clap-juce-extensions">clap-juce-extensions</a>
+           (MIT) for the CLAP build.</p>
+        <p>The GUI embeds UnifrakturMaguntia and IM Fell English, the same
+           typefaces you are reading now, both under the SIL Open Font License.</p>
+      </div>
+      <img class="sigil-divider" src="../assets/sigil.svg" alt="">
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Sognevo · free and open-source audio plugins, licensed under the
+       <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPLv3</a>.</p>
+    <p class="fine">Analytics by <a href="https://www.goatcounter.com">GoatCounter</a>,
+       cookieless. VST is a registered trademark of Steinberg Media Technologies GmbH.</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GOATCOUNTER — analytics cookieless, niente banner GDPR.
+     ⚠ PLACEHOLDER: crea l'account su https://www.goatcounter.com e
+     sostituisci «SOSTITUISCIMI» con il codice del tuo sito
+     (in questo file, in index.html e in 404.html).
+     ═══════════════════════════════════════════════════════════════ -->
+<script data-goatcounter="https://SOSTITUISCIMI.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<script src="../js/release.js"></script>
+
+</body>
+</html>
