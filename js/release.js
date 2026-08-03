@@ -2,7 +2,7 @@
    Queries the GitHub API for the latest published release and builds
    version info, per-OS download buttons and download counters.
    If no release is published yet (the API answers 404), it falls back
-   to a plain link to the GitHub releases page — no thrown errors. */
+   to a plain link to the GitHub releases page, with no thrown errors. */
 (function () {
   'use strict';
 
@@ -66,7 +66,7 @@
       var a = el('a', 'dl-btn' + (yours === p.slug ? ' primary' : ''));
       a.href = asset.browser_download_url;
       a.setAttribute('data-goatcounter-click', 'galdr-download-' + p.slug);
-      a.setAttribute('data-goatcounter-title', 'Galdr download — ' + p.label);
+      a.setAttribute('data-goatcounter-title', 'Galdr download: ' + p.label);
       if (yours === p.slug) { a.title = 'Detected as your system'; }
       a.appendChild(el('span', 'dl-os', p.label));
       a.appendChild(el('span', 'dl-sub', p.formats));
@@ -77,7 +77,7 @@
     if (!found) { showFallback(); return; }
 
     document.getElementById('dl-version').textContent = release.tag_name || release.name || '';
-    document.getElementById('dl-date').textContent = release.published_at ? formatDate(release.published_at) : '—';
+    document.getElementById('dl-date').textContent = release.published_at ? formatDate(release.published_at) : 'n/a';
     document.getElementById('dl-total').textContent = total.toLocaleString('en') + ' downloads so far';
 
     loading.hidden = true;

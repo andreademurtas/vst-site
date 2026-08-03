@@ -2,5 +2,5 @@
   <circle cx="32" cy="32" r="30" stroke="#272421" stroke-width="1"/>
   <circle cx="32" cy="32" r="25" stroke="#403b35" stroke-width="1.5"/>
   <path d="M32 1v6M32 57v6M1 32h6M57 32h6" stroke="#403b35" stroke-width="1.5"/>
-  <path d="M40 13 21 30l22 8-20 13" stroke="#9e1313" stroke-width="3" stroke-linecap="square"/>
+  <path d="M44.5 19.5A17 17 0 1 0 44.5 44.5A13 13 0 1 1 44.5 19.5Z" fill="#9e1313"/>
 </svg>
