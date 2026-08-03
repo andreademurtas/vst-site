@@ -1,13 +1,15 @@
 /* Galdr release loader.
-   Queries the GitHub API for the latest published release and builds
+   Queries the GitHub API for the published releases and builds
    version info, per-OS download buttons and download counters.
-   If no release is published yet (the API answers 404), it falls back
-   to a plain link to the GitHub releases page, with no thrown errors. */
+   Download counts are summed across every release, while the
+   buttons link to the assets of the latest one.
+   If no release is published yet, it falls back to a plain link
+   to the GitHub releases page, with no thrown errors. */
 (function () {
   'use strict';
 
   var REPO = 'andreademurtas/galdr';
-  var API_URL = 'https://api.github.com/repos/' + REPO + '/releases/latest';
+  var API_URL = 'https://api.github.com/repos/' + REPO + '/releases?per_page=100';
 
   var PLATFORMS = [
     { asset: 'Galdr-Windows.zip',  label: 'Windows', slug: 'windows', formats: 'VST3 · CLAP · Standalone · .zip' },
@@ -49,8 +51,23 @@
     fallback.hidden = false;
   }
 
-  function render(release) {
-    if (!release || !Array.isArray(release.assets)) { showFallback(); return; }
+  function render(releases) {
+    if (!Array.isArray(releases) || !releases.length) { showFallback(); return; }
+
+    /* Latest stable release for the download links (prereleases only
+       if nothing else exists). */
+    var latest = releases.filter(function (r) {
+      return !r.draft && !r.prerelease;
+    })[0] || releases[0];
+    if (!latest || !Array.isArray(latest.assets)) { showFallback(); return; }
+
+    /* All-time download counts per asset name, summed across releases. */
+    var counts = {};
+    releases.forEach(function (r) {
+      (r.assets || []).forEach(function (a) {
+        counts[a.name] = (counts[a.name] || 0) + (a.download_count || 0);
+      });
+    });
 
     var yours = detectOS();
     var buttons = document.getElementById('dl-buttons');
@@ -58,10 +75,11 @@
     var found = 0;
 
     PLATFORMS.forEach(function (p) {
-      var asset = release.assets.filter(function (a) { return a.name === p.asset; })[0];
+      var asset = latest.assets.filter(function (a) { return a.name === p.asset; })[0];
       if (!asset) { return; }
       found += 1;
-      total += asset.download_count || 0;
+      var count = counts[p.asset] || 0;
+      total += count;
 
       var a = el('a', 'dl-btn' + (yours === p.slug ? ' primary' : ''));
       a.href = asset.browser_download_url;
@@ -70,14 +88,14 @@
       if (yours === p.slug) { a.title = 'Detected as your system'; }
       a.appendChild(el('span', 'dl-os', p.label));
       a.appendChild(el('span', 'dl-sub', p.formats));
-      a.appendChild(el('span', 'dl-count', (asset.download_count || 0).toLocaleString('en') + ' downloads'));
+      a.appendChild(el('span', 'dl-count', count.toLocaleString('en') + ' downloads'));
       buttons.appendChild(a);
     });
 
     if (!found) { showFallback(); return; }
 
-    document.getElementById('dl-version').textContent = release.tag_name || release.name || '';
-    document.getElementById('dl-date').textContent = release.published_at ? formatDate(release.published_at) : 'n/a';
+    document.getElementById('dl-version').textContent = latest.tag_name || latest.name || '';
+    document.getElementById('dl-date').textContent = latest.published_at ? formatDate(latest.published_at) : 'n/a';
     document.getElementById('dl-total').textContent = total.toLocaleString('en') + ' downloads so far';
 
     loading.hidden = true;
