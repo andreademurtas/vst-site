@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Galdr - black metal synthesizer | Sognevo</title>
-  <meta name="description" content="Galdr is a free, open-source black metal synthesizer: VST3, CLAP, AU and standalone for Windows, macOS and Linux. 12 voices, morphing wavetables, mod matrix, arpeggiator, genre FX chain, GPLv3.">
+  <title>Gala - black metal vocal processor | Sognevo</title>
+  <meta name="description" content="Gala is a free, open-source vocal processor that turns a dry screamed take into a finished black metal vocal: VST3, CLAP, AU and standalone for Windows, macOS and Linux. GPLv3, currently in pre-release.">
   <meta name="theme-color" content="#070707">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070707'/%3E%3Cpath d='M24.25 7.3A12 12 0 1 0 24.25 24.7A9 9 0 1 1 24.25 7.3Z' fill='%23c92121'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
     <nav class="site-nav">
       <a href="../#plugins">Plugins</a>
       <a href="../#about">About</a>
-      <a href="https://github.com/andreademurtas/galdr">Source</a>
+      <a href="https://github.com/andreademurtas/gala">Source</a>
     </nav>
   </div>
 </header>
@@ -32,20 +32,21 @@
 
   <section class="hero">
     <div class="container">
-      <h1 class="display">Galdr</h1>
-      <p class="etymology"><em>galdr</em>, Old Norse: a spell sung rather than spoken.</p>
-      <p class="tagline">A free and open-source synthesizer with a black-metal soul,
-         built with <a href="https://juce.com">JUCE</a>.</p>
+      <h1 class="display">Gala</h1>
+      <p class="etymology"><em>gala</em>, Old Norse: to crow, to shriek, to sing - the root of <em>galdr</em>.</p>
+      <p class="tagline">A free and open-source vocal processor that turns a dry
+         screamed take into a finished black metal vocal, built with
+         <a href="https://juce.com">JUCE</a>. Sibling of <a href="../galdr/">Galdr</a>.</p>
       <div class="hero-actions">
         <a class="btn primary" href="#download">Download</a>
-        <a class="btn" href="https://github.com/andreademurtas/galdr">Source on GitHub</a>
+        <a class="btn" href="https://github.com/andreademurtas/gala">Source on GitHub</a>
       </div>
       <p class="tags">
-        <span class="tag">VST3</span><span class="tag">CLAP</span><span class="tag">AU (macOS)</span><span class="tag">Standalone</span><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">Linux</span>
+        <span class="tag">Pre-release</span><span class="tag">VST3</span><span class="tag">CLAP</span><span class="tag">AU (macOS)</span><span class="tag">Standalone</span><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">Linux</span>
       </p>
       <figure class="screenshot-frame">
-        <img src="https://raw.githubusercontent.com/andreademurtas/galdr/main/docs/screenshot.png"
-             alt="The Galdr GUI: a dark-fantasy themed synthesizer interface"
+        <img src="https://raw.githubusercontent.com/andreademurtas/gala/main/docs/screenshot.png"
+             alt="The Gala GUI: a dark-fantasy themed vocal processor interface"
              loading="lazy"
              onerror="this.closest('figure').hidden = true">
         <figcaption>The GUI: dark-fantasy themed, resizable, with tooltips.</figcaption>
@@ -68,48 +69,34 @@
         <div id="dl-buttons" class="dl-buttons"></div>
         <p class="dl-after">Each archive contains every plugin format for its platform.
            Files are served by GitHub from the project's
-           <a href="https://github.com/andreademurtas/galdr/releases">releases</a>.</p>
+           <a href="https://github.com/andreademurtas/gala/releases">releases</a>.</p>
       </div>
 
       <div id="dl-fallback" hidden>
-        <p>There is no packaged release yet; the first one is still in the works.
-           Until then you can watch the releases page, or build Galdr from source
-           with the instructions further down.</p>
-        <a class="btn" href="https://github.com/andreademurtas/galdr/releases"
-           data-goatcounter-click="galdr-releases-fallback">Releases on GitHub</a>
+        <p>Gala is in pre-release: the signal chain is being built milestone by
+           milestone, and there is no packaged release yet. Until the first one
+           lands you can watch the releases page, or build it from source with
+           the instructions further down.</p>
+        <a class="btn" href="https://github.com/andreademurtas/gala/releases"
+           data-goatcounter-click="gala-releases-fallback">Releases on GitHub</a>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2>Features</h2>
+      <h2>The chain</h2>
+      <div class="prose">
+        <p>One signal path, in order, from dry take to finished vocal:</p>
+      </div>
       <ul class="feature-list">
-        <li>12-voice engine with poly, mono and legato modes</li>
-        <li>Two band-limited (PolyBLEP) oscillators, up to 7-voice unison with
-            detune and stereo spread, sub oscillator and white/pink noise</li>
-        <li>FM (osc&nbsp;2 modulates osc&nbsp;1) and hard sync for aggressive
-            metallic timbres, plus per-voice analog drift</li>
-        <li>Morphing wavetable mode: 32 mip-mapped frames sweeping from sine
-            through saw to an inharmonic “grim” spectrum</li>
-        <li>Multimode filter (LP 12/24&nbsp;dB, HP, BP and vowel formant) with
-            drive, dedicated envelope and keytracking</li>
-        <li>8-slot modulation matrix (LFOs, envelopes, velocity, mod wheel,
-            pressure, per-note random) routable to pitch, morph, cutoff, FM,
-            FX sends and more, with a free third envelope</li>
-        <li>Tempo-synced arpeggiator (up/down/up-down/random/as-played,
-            up to 4 octaves)</li>
-        <li>Two LFOs, glide, separate amp and filter envelopes</li>
-        <li>MPE-friendly per-note pitch bend and pressure; Scala (.scl) microtuning</li>
-        <li>Genre FX chain with the nonlinear stages oversampled 2×: four-flavour
-            distortion, bitcrusher, ring modulator, chorus, tremolo picking, delay
-            and a dark FDN cavern reverb with predelay and octave-up shimmer</li>
-        <li>“Blizzard”: a granular snowstorm texture layer, gated by note
-            activity or free-running as a continuous drone</li>
-        <li>Tempo sync for LFOs, tremolo and delay (musical divisions of the host tempo)</li>
-        <li>Preset browser with factory and user presets, oscilloscope and
-            spectrum analyser, on-screen MIDI keyboard</li>
-        <li>Dark-fantasy themed GUI, resizable, with tooltips</li>
+        <li>Input stage with high-pass filter</li>
+        <li>Gate / downward expander with lookahead</li>
+        <li>Split-band de-esser</li>
+        <li>Morphing four-band formant filter</li>
+        <li>Four-flavour multistage drive, 4× oversampled</li>
+        <li>Three-voice doubler</li>
+        <li>Ducked ambience: tempo-synced delay and an FDN cavern reverb</li>
       </ul>
     </div>
   </section>
@@ -165,14 +152,14 @@
         <p>You need git, CMake ≥ 3.22 and a C++20 compiler (Visual Studio 2022 on
            Windows, Xcode on macOS, GCC or Clang on Linux).</p>
       </div>
-<pre><code>git clone --recurse-submodules https://github.com/andreademurtas/galdr.git
-cd galdr
+<pre><code>git clone --recurse-submodules https://github.com/andreademurtas/gala.git
+cd gala
 cmake -B build
 cmake --build build --config Release</code></pre>
       <div class="prose">
-        <p style="margin-top:1.4rem">Builds end up in <code>build/Galdr_artefacts/Release/</code>.
+        <p style="margin-top:1.4rem">Builds end up in <code>build/Gala_artefacts/Release/</code>.
            On Linux, install the JUCE build dependencies first; the package list is in the
-           <a href="https://github.com/andreademurtas/galdr#building">README</a>.</p>
+           <a href="https://github.com/andreademurtas/gala#building">README</a>.</p>
       </div>
     </div>
   </section>
@@ -181,7 +168,7 @@ cmake --build build --config Release</code></pre>
     <div class="container">
       <h2>License</h2>
       <div class="prose">
-        <p>Galdr is licensed under the GNU General Public License v3.0 or later.
+        <p>Gala is licensed under the GNU General Public License v3.0 or later.
            It is built on the <a href="https://juce.com">JUCE framework</a> (AGPLv3),
            uses the VST3 SDK interfaces distributed with JUCE (MIT), and
            <a href="https://github.com/free-audio/clap-juce-extensions">clap-juce-extensions</a>
@@ -209,7 +196,7 @@ cmake --build build --config Release</code></pre>
 <script data-goatcounter="https://sognevo.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 
-<script src="../js/release.js" data-repo="andreademurtas/galdr" data-name="Galdr"></script>
+<script src="../js/release.js" data-repo="andreademurtas/gala" data-name="Gala"></script>
 
 </body>
 </html>

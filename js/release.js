@@ -1,4 +1,6 @@
-/* Galdr release loader.
+/* Release loader, shared by the plugin pages.
+   The script tag provides the plugin via data attributes:
+     <script src="../js/release.js" data-repo="andreademurtas/galdr" data-name="Galdr"></script>
    Queries the GitHub API for the published releases and builds
    version info, per-OS download buttons and download counters.
    Download counts are summed across every release, while the
@@ -8,13 +10,16 @@
 (function () {
   'use strict';
 
-  var REPO = 'andreademurtas/galdr';
+  var script = document.currentScript;
+  var REPO = (script && script.getAttribute('data-repo')) || 'andreademurtas/galdr';
+  var NAME = (script && script.getAttribute('data-name')) || 'Galdr';
+  var SLUG = NAME.toLowerCase();
   var API_URL = 'https://api.github.com/repos/' + REPO + '/releases?per_page=100';
 
   var PLATFORMS = [
-    { asset: 'Galdr-Windows.zip',  label: 'Windows', slug: 'windows', formats: 'VST3 · CLAP · Standalone · .zip' },
-    { asset: 'Galdr-macOS.tar.gz', label: 'macOS',   slug: 'macos',   formats: 'VST3 · CLAP · AU · Standalone · .tar.gz' },
-    { asset: 'Galdr-Linux.tar.gz', label: 'Linux',   slug: 'linux',   formats: 'VST3 · CLAP · Standalone · .tar.gz' }
+    { asset: NAME + '-Windows.zip',  label: 'Windows', slug: 'windows', formats: 'VST3 · CLAP · Standalone · .zip' },
+    { asset: NAME + '-macOS.tar.gz', label: 'macOS',   slug: 'macos',   formats: 'VST3 · CLAP · AU · Standalone · .tar.gz' },
+    { asset: NAME + '-Linux.tar.gz', label: 'Linux',   slug: 'linux',   formats: 'VST3 · CLAP · Standalone · .tar.gz' }
   ];
 
   var loading  = document.getElementById('dl-loading');
@@ -83,8 +88,8 @@
 
       var a = el('a', 'dl-btn' + (yours === p.slug ? ' primary' : ''));
       a.href = asset.browser_download_url;
-      a.setAttribute('data-goatcounter-click', 'galdr-download-' + p.slug);
-      a.setAttribute('data-goatcounter-title', 'Galdr download: ' + p.label);
+      a.setAttribute('data-goatcounter-click', SLUG + '-download-' + p.slug);
+      a.setAttribute('data-goatcounter-title', NAME + ' download: ' + p.label);
       if (yours === p.slug) { a.title = 'Detected as your system'; }
       a.appendChild(el('span', 'dl-os', p.label));
       a.appendChild(el('span', 'dl-sub', p.formats));
