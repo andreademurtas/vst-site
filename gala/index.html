@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gala - black metal vocal processor | Sognevo</title>
-  <meta name="description" content="Gala is a free, open-source vocal processor that turns a dry screamed take into a finished black metal vocal: VST3, CLAP, AU and standalone for Windows, macOS and Linux. GPLv3, currently in pre-release.">
+  <meta name="description" content="Gala is a free, open-source vocal processor that turns a dry screamed take into a finished black metal vocal: VST3, CLAP, AU and standalone for Windows, macOS and Linux. Gate, de-esser, morphing formants, multistage drive, doubler, ducked ambience, GPLv3.">
   <meta name="theme-color" content="#070707">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070707'/%3E%3Ccircle cx='16' cy='16' r='13' fill='%23100d0b' stroke='%23403b35' stroke-width='1.5'/%3E%3Cpath d='M22.25 9.75A8.5 8.5 0 1 0 22.25 22.25A6.5 6.5 0 1 1 22.25 9.75Z' fill='%23c92121' transform='rotate(-135 16 16)'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
   <section class="hero">
     <div class="container">
       <h1 class="display">Gala</h1>
-      <p class="etymology"><em>gala</em>, Old Norse: to crow, to shriek, to sing - the root of <em>galdr</em>.</p>
+      <p class="etymology"><em>gala</em>, Old Norse: to crow, to shriek, to sing.</p>
       <p class="tagline">A free and open-source vocal processor that turns a dry
          screamed take into a finished black metal vocal, built with
          <a href="https://juce.com">JUCE</a>. Sibling of <a href="../galdr/">Galdr</a>.</p>
@@ -42,7 +42,7 @@
         <a class="btn" href="https://github.com/andreademurtas/gala">Source on GitHub</a>
       </div>
       <p class="tags">
-        <span class="tag">Pre-release</span><span class="tag">VST3</span><span class="tag">CLAP</span><span class="tag">AU (macOS)</span><span class="tag">Standalone</span><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">Linux</span>
+        <span class="tag">VST3</span><span class="tag">CLAP</span><span class="tag">AU (macOS)</span><span class="tag">Standalone</span><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">Linux</span>
       </p>
       <figure class="screenshot-frame">
         <img src="https://raw.githubusercontent.com/andreademurtas/gala/main/docs/screenshot.png"
@@ -73,10 +73,9 @@
       </div>
 
       <div id="dl-fallback" hidden>
-        <p>Gala is in pre-release: the signal chain is being built milestone by
-           milestone, and there is no packaged release yet. Until the first one
-           lands you can watch the releases page, or build it from source with
-           the instructions further down.</p>
+        <p>There is no packaged release yet; the first one is still in the works.
+           Until then you can watch the releases page, or build Gala from source
+           with the instructions further down.</p>
         <a class="btn" href="https://github.com/andreademurtas/gala/releases"
            data-goatcounter-click="gala-releases-fallback">Releases on GitHub</a>
       </div>
@@ -85,18 +84,41 @@
 
   <section class="section">
     <div class="container">
-      <h2>The chain</h2>
-      <div class="prose">
-        <p>One signal path, in order, from dry take to finished vocal:</p>
-      </div>
+      <h2>Features</h2>
       <ul class="feature-list">
-        <li>Input stage with high-pass filter</li>
-        <li>Gate / downward expander with lookahead</li>
-        <li>Split-band de-esser</li>
-        <li>Morphing four-band formant filter</li>
-        <li>Four-flavour multistage drive, 4× oversampled</li>
-        <li>Three-voice doubler</li>
-        <li>Ducked ambience: tempo-synced delay and an FDN cavern reverb</li>
+        <li>One chain from dry scream to finished vocal, in signal order: input,
+            gate, de-esser, formants, drive, doubler, ambience, output</li>
+        <li>Input stage with gain, optional mono sum and a 12&nbsp;dB/oct high-pass</li>
+        <li>Gate / downward expander with hysteresis, hold, sidechain high-pass
+            and up to 5&nbsp;ms of lookahead, reported to the host as latency</li>
+        <li>Split-band de-esser ahead of the drive (saturation amplifies
+            sibilance), with listen mode</li>
+        <li>Four-band formant bank: a morph control glides across A-E-I-O-U
+            targets, a shift control scales every centre 0.5×-2× without
+            touching pitch, and each band offers frequency, Q and gain on top
+            of the morphed target</li>
+        <li>Multistage drive with Galdr's four flavours (soft, hard, fold, grim),
+            bias for asymmetric clipping and even harmonics, tilt EQ before and
+            after, automatic level compensation and 4× oversampling</li>
+        <li>Three-voice doubler: randomized 8-40&nbsp;ms delays, up to ±30 cents
+            of warble, per-voice band-passing, stereo spread and a fully
+            mono-safe width control</li>
+        <li>Ducked ambience: a tempo-syncable delay with filtered feedback and
+            a short cavern reverb built on Galdr's FDN, both pushed down by the
+            dry vocal so the tail blooms only between phrases</li>
+        <li>Latency-aligned global dry/wet and a click-free, latency-compensated
+            bypass</li>
+        <li>Gain-reduction meters on gate, de-esser and ducking, input/output
+            level meters</li>
+        <li>Full-page preset browser: fourteen factory presets (from bare throat
+            to buried in frost) plus user presets with author/description
+            metadata, search and prev/next stepping</li>
+        <li>Undo/redo (Ctrl+Z / Ctrl+Shift+Z); right-click any knob to reset it
+            or type a value</li>
+        <li>Dark-fantasy themed GUI shared with Galdr, resizable, with tooltips
+            on every control</li>
+        <li>Versioned session/preset state: settings saved today keep loading
+            in future versions</li>
       </ul>
     </div>
   </section>
