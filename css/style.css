@@ -335,6 +335,24 @@ th {
 }
 td:first-child { white-space: nowrap; }
 
+/* ── Donate ─────────────────────────────────────────────────── */
+
+.donate-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin: 2rem 0 2.2rem;
+}
+
+.donate-micro {
+  margin-top: 0.7rem;
+  color: var(--bone-dim);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.donate-note { margin-top: 2.2rem; }
+
 /* ── 404 ────────────────────────────────────────────────────── */
 
 .void {
