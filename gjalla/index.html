@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gala - black metal vocal processor | Sognevo</title>
-  <meta name="description" content="Gala is a free, open-source vocal processor that turns a dry screamed take into a finished black metal vocal: VST3, CLAP, AU and standalone for Windows, macOS and Linux. Gate, de-esser, morphing formants, multistage drive, doubler, ducked ambience, GPLv3.">
+  <title>Gjalla - black metal amp simulator | Sognevo</title>
+  <meta name="description" content="Gjalla is a free, open-source black metal guitar amp simulator: VST3, CLAP, AU and standalone for Windows, macOS and Linux. Solid-state preamp, three pedal voicings including an HM-2 style chainsaw, three cabinets or custom IRs, oversampling, GPLv3.">
   <meta name="theme-color" content="#070707">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070707'/%3E%3Ccircle cx='16' cy='16' r='13' fill='%23100d0b' stroke='%23403b35' stroke-width='1.5'/%3E%3Cpath d='M22.25 9.75A8.5 8.5 0 1 0 22.25 22.25A6.5 6.5 0 1 1 22.25 9.75Z' fill='%23c92121' transform='rotate(-135 16 16)'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
     <nav class="site-nav">
       <a href="../#plugins">Plugins</a>
       <a href="../#about">About</a>
-      <a href="https://github.com/andreademurtas/gala">Source</a>
+      <a href="https://github.com/andreademurtas/gjalla">Source</a>
     </nav>
   </div>
 </header>
@@ -32,22 +32,23 @@
 
   <section class="hero">
     <div class="container">
-      <h1 class="display">Gala</h1>
-      <p class="etymology"><em>gala</em>, Old Norse: to crow, to shriek, to sing.</p>
-      <p class="tagline">A free and open-source vocal processor that turns a dry
-         screamed take into a finished black metal vocal, built with
-         <a href="https://juce.com">JUCE</a>. Sibling of <a href="../galdr/">Galdr</a>
-         and <a href="../gjalla/">Gjalla</a>.</p>
+      <h1 class="display">Gjalla</h1>
+      <p class="etymology"><em>gjalla</em>, Old Norse: to shriek, to resound.</p>
+      <p class="tagline">A free and open-source black metal guitar amp simulator:
+         a cheap transistor head, a distortion pedal in front of it and a cabinet
+         that stops dead above 5&nbsp;kHz, built with
+         <a href="https://juce.com">JUCE</a>. Sibling of
+         <a href="../galdr/">Galdr</a> and <a href="../gala/">Gala</a>.</p>
       <div class="hero-actions">
         <a class="btn primary" href="#download">Download</a>
-        <a class="btn" href="https://github.com/andreademurtas/gala">Source on GitHub</a>
+        <a class="btn" href="https://github.com/andreademurtas/gjalla">Source on GitHub</a>
       </div>
       <p class="tags">
         <span class="tag">VST3</span><span class="tag">CLAP</span><span class="tag">AU (macOS)</span><span class="tag">Standalone</span><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">Linux</span>
       </p>
       <figure class="screenshot-frame">
-        <img src="https://raw.githubusercontent.com/andreademurtas/gala/main/docs/screenshot.png"
-             alt="The Gala GUI: a dark-fantasy themed vocal processor interface"
+        <img src="https://raw.githubusercontent.com/andreademurtas/gjalla/main/docs/screenshot.png"
+             alt="The Gjalla GUI: a dark-fantasy themed guitar amp simulator interface"
              loading="lazy"
              onerror="this.closest('figure').hidden = true">
         <figcaption>The GUI: dark-fantasy themed, resizable, with tooltips.</figcaption>
@@ -70,15 +71,15 @@
         <div id="dl-buttons" class="dl-buttons"></div>
         <p class="dl-after">Each archive contains every plugin format for its platform.
            Files are served by GitHub from the project's
-           <a href="https://github.com/andreademurtas/gala/releases">releases</a>.</p>
+           <a href="https://github.com/andreademurtas/gjalla/releases">releases</a>.</p>
       </div>
 
       <div id="dl-fallback" hidden>
         <p>There is no packaged release yet; the first one is still in the works.
-           Until then you can watch the releases page, or build Gala from source
+           Until then you can watch the releases page, or build Gjalla from source
            with the instructions further down.</p>
-        <a class="btn" href="https://github.com/andreademurtas/gala/releases"
-           data-goatcounter-click="gala-releases-fallback">Releases on GitHub</a>
+        <a class="btn" href="https://github.com/andreademurtas/gjalla/releases"
+           data-goatcounter-click="gjalla-releases-fallback">Releases on GitHub</a>
       </div>
 
       <p class="donate-note"><a class="btn" href="../donate/">Support the plugins</a></p>
@@ -89,40 +90,90 @@
     <div class="container">
       <h2>Features</h2>
       <ul class="feature-list">
-        <li>One chain from dry scream to finished vocal, in signal order: input,
-            gate, de-esser, formants, drive, doubler, ambience, output</li>
-        <li>Input stage with gain, optional mono sum and a 12&nbsp;dB/oct high-pass</li>
-        <li>Gate / downward expander with hysteresis, hold, sidechain high-pass
-            and up to 5&nbsp;ms of lookahead, reported to the host as latency</li>
-        <li>Split-band de-esser ahead of the drive (saturation amplifies
-            sibilance), with listen mode</li>
-        <li>Four-band formant bank: a morph control glides across A-E-I-O-U
-            targets, a shift control scales every centre 0.5×-2× without
-            touching pitch, and each band offers frequency, Q and gain on top
-            of the morphed target</li>
-        <li>Multistage drive with Galdr's four flavours (soft, hard, fold, grim),
-            bias for asymmetric clipping and even harmonics, tilt EQ before and
-            after, automatic level compensation and 4× oversampling</li>
-        <li>Three-voice doubler: randomized 8-40&nbsp;ms delays, up to ±30 cents
-            of warble, per-voice band-passing, stereo spread and a fully
-            mono-safe width control</li>
-        <li>Ducked ambience: a tempo-syncable delay with filtered feedback and
-            a short cavern reverb built on Galdr's FDN, both pushed down by the
-            dry vocal so the tail blooms only between phrases</li>
-        <li>Latency-aligned global dry/wet and a click-free, latency-compensated
-            bypass</li>
-        <li>Gain-reduction meters on gate, de-esser and ducking, input/output
-            level meters</li>
-        <li>Full-page preset browser: fourteen factory presets (from bare throat
-            to buried in frost) plus user presets with author/description
-            metadata, search and prev/next stepping</li>
-        <li>Undo/redo (Ctrl+Z / Ctrl+Shift+Z); right-click any knob to reset it
-            or type a value</li>
-        <li>Dark-fantasy themed GUI shared with Galdr, resizable, with tooltips
-            on every control</li>
-        <li>Versioned session/preset state: settings saved today keep loading
-            in future versions</li>
+        <li>One chain from dry guitar to finished tone, in signal order: input
+            trim, noise gate, pedal, preamp, tone stack, power section,
+            presence, cabinet, frost, output trim</li>
+        <li>Noise gate on the clean signal ahead of every gain stage, with
+            fixed 0.5&nbsp;ms attack, 80&nbsp;ms release and 4&nbsp;dB of
+            hysteresis, and no added latency</li>
+        <li>Three pedal voicings sharing one set of knobs: a cheap 90s
+            distortion box, an HM-2 style chainsaw and a starved transistor
+            fuzz (details in the table below)</li>
+        <li>Solid-state preamp: two cascaded gain-plus-waveshaper stages up to
+            +36&nbsp;dB, a sweepable 20-300&nbsp;Hz tight filter ahead of the
+            clipping, and a deliberate asymmetry that puts even harmonics in
+            without leaving DC behind</li>
+        <li>Three-band tone stack plus a presence control after the power
+            section</li>
+        <li>Three analytic cabinet voicings (4x12, practice combo, boombox),
+            or load your own WAV/AIFF impulse response up to 2 seconds, or
+            switch the cabinet off entirely for an external IR loader</li>
+        <li>Frost: a tilt filter at 1&nbsp;kHz that takes the amp from dark
+            to thin</li>
+        <li>2x or 4x oversampling around the whole nonlinear path, 6 samples
+            of latency (0.13&nbsp;ms at 48&nbsp;kHz) reported to the host and
+            identical at both quality settings</li>
+        <li>Level compensation on the pedal and the preamp, so drive and gain
+            buy distortion rather than volume and Master stays the volume
+            control</li>
+        <li>Six factory presets, in/out level meters, right-click any knob to
+            reset it or type a value, undo/redo (Ctrl+Z / Ctrl+Shift+Z)</li>
+        <li>Dark GUI shared with Galdr and Gala, resizable 0.75x to 2x, with
+            tooltips on every control</li>
+        <li>Versioned session state: settings saved today keep loading in
+            future versions</li>
+        <li>No telemetry, no network access, no update checks, no accounts</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>The pedal knobs</h2>
+      <div class="prose">
+        <p>The pedal has three knobs and three voicings, and each knob means
+           something different per voicing:</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>Dist</th><th>Chainsaw</th><th>Fuzz</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Reference</td>
+              <td>cheap 90s distortion box</td>
+              <td>HM-2 style</td>
+              <td>starved transistor fuzz</td>
+            </tr>
+            <tr>
+              <td><strong>Drive</strong></td>
+              <td>0 to +40&nbsp;dB into an asymmetric diode clipper</td>
+              <td>clip amount, 0 to +36&nbsp;dB into a hard clipper</td>
+              <td>0 to +50&nbsp;dB into a lopsided hard clipper</td>
+            </tr>
+            <tr>
+              <td><strong>Tone</strong></td>
+              <td>tilt around 800&nbsp;Hz, dark to thin</td>
+              <td>sweeps the upper of the two pre-clip peaks, 700&nbsp;Hz to 1.5&nbsp;kHz</td>
+              <td>post low-pass, 1 to 8&nbsp;kHz</td>
+            </tr>
+            <tr>
+              <td><strong>Level</strong></td>
+              <td>output trim, -12 to +12&nbsp;dB</td>
+              <td>output trim</td>
+              <td>output trim</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <p style="margin-top:1.4rem">Dist high-passes at 60&nbsp;Hz before
+           clipping. Chainsaw pushes two fixed +9&nbsp;dB peaks (250&nbsp;Hz and
+           the swept one) into the clipper and low-passes at 6&nbsp;kHz
+           afterwards, which is where the buzzsaw comes from. Fuzz clips harder
+           on the positive rail than the negative one.</p>
+      </div>
     </div>
   </section>
 
@@ -177,14 +228,14 @@
         <p>You need git, CMake ≥ 3.22 and a C++20 compiler (Visual Studio 2022 on
            Windows, Xcode on macOS, GCC or Clang on Linux).</p>
       </div>
-<pre><code>git clone --recurse-submodules https://github.com/andreademurtas/gala.git
-cd gala
+<pre><code>git clone --recurse-submodules https://github.com/andreademurtas/gjalla.git
+cd gjalla
 cmake -B build
 cmake --build build --config Release</code></pre>
       <div class="prose">
-        <p style="margin-top:1.4rem">Builds end up in <code>build/Gala_artefacts/Release/</code>.
+        <p style="margin-top:1.4rem">Builds end up in <code>build/Gjalla_artefacts/Release/</code>.
            On Linux, install the JUCE build dependencies first; the package list is in the
-           <a href="https://github.com/andreademurtas/gala#building">README</a>.</p>
+           <a href="https://github.com/andreademurtas/gjalla#building">README</a>.</p>
       </div>
     </div>
   </section>
@@ -193,7 +244,7 @@ cmake --build build --config Release</code></pre>
     <div class="container">
       <h2>License</h2>
       <div class="prose">
-        <p>Gala is licensed under the GNU General Public License v3.0 or later.
+        <p>Gjalla is licensed under the GNU General Public License v3.0 or later.
            It is built on the <a href="https://juce.com">JUCE framework</a> (AGPLv3),
            uses the VST3 SDK interfaces distributed with JUCE (MIT), and
            <a href="https://github.com/free-audio/clap-juce-extensions">clap-juce-extensions</a>
@@ -223,7 +274,7 @@ cmake --build build --config Release</code></pre>
 <script data-goatcounter="https://sognevo.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 
-<script src="../js/release.js" data-repo="andreademurtas/gala" data-name="Gala"></script>
+<script src="../js/release.js" data-repo="andreademurtas/gjalla" data-name="Gjalla"></script>
 
 </body>
 </html>
