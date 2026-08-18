@@ -1,0 +1,46 @@
+name: Generate sitemap
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history, so lastmod can come from each page's last commit.
+          fetch-depth: 0
+
+      - name: Build sitemap.xml
+        run: |
+          BASE="https://sognevo.com"
+          {
+            echo '<?xml version="1.0" encoding="UTF-8"?>'
+            echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            find . -name index.html -not -path './.git/*' | sort | while read -r f; do
+              dir=$(dirname "$f" | sed 's|^\./*||')
+              if [ -z "$dir" ]; then loc="$BASE/"; else loc="$BASE/$dir/"; fi
+              lastmod=$(git log -1 --format=%cI -- "$f")
+              if [ -n "$lastmod" ]; then
+                printf '  <url><loc>%s</loc><lastmod>%s</lastmod></url>\n' "$loc" "$lastmod"
+              else
+                printf '  <url><loc>%s</loc></url>\n' "$loc"
+              fi
+            done
+            echo '</urlset>'
+          } > sitemap.xml
+
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain sitemap.xml)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml
+            git commit -m "Update sitemap"
+            git push
+          fi
